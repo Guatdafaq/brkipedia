@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">brkipedia</string>
+    <string name="app_name" translatable="false">Brkipedia</string>
 
     <!-- General -->
-    <string name="breaking_bad">Breaking Bad</string>
-    <string name="better_call_saul">Better Call Saul</string>
+    <string name="breaking_bad" translatable="false">Breaking Bad</string>
+    <string name="better_call_saul" translatable="false">Better Call Saul</string>
 
     <!-- Character detail -->
     <string name="character_detail_season_toast">Appears in season %1$s!</string>
