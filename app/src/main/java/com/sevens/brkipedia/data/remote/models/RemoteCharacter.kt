@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class RemoteCharacter(
-    val id: Int,
+    val char_id: Int,
     val name: String,
     val birthday: String,
     val occupation: ArrayList<String>,

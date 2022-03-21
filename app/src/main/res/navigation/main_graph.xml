@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/categoriesFragment">
+
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.sevens.brkipedia.presentation.fragments.CategoriesFragment"
+        android:label="fragment_categories"
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_categoriesFragment_to_characterFragment"
+            app:destination="@id/characterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterFragment"
+        android:name="com.sevens.brkipedia.presentation.fragments.CharacterDetailFragment"
+        android:label="fragment_character"
+        tools:layout="@layout/fragment_character_detail" >
+        <argument
+            android:name="character"
+            app:argType="com.sevens.brkipedia.domain.models.DomainCharacter" />
+    </fragment>
+
+</navigation>

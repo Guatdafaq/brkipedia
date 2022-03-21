@@ -1,23 +1,23 @@
 package com.sevens.brkipedia.data.mappers
 
 import android.annotation.SuppressLint
-import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import com.sevens.brkipedia.data.remote.models.RemoteCharacter
+import com.sevens.brkipedia.data.remote.models.RemoteQuote
 import com.sevens.brkipedia.domain.common.Category
 import com.sevens.brkipedia.domain.common.Status
-import com.sevens.brkipedia.domain.models.Character
-import java.io.ByteArrayOutputStream
+import com.sevens.brkipedia.domain.models.DomainCharacter
+import com.sevens.brkipedia.domain.models.DomainQuote
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun RemoteCharacter.toDomain(): Character {
-    return Character(
-        this.id,
+fun RemoteCharacter.toDomain(): DomainCharacter {
+    return DomainCharacter(
+        this.char_id,
         this.name,
         parseDate(this.birthday),
         this.occupation,
-        this.img.toDrawable(),
+        this.img,
         parseStatus(this.status),
         this.nickname,
         this.appearance.toList(),
@@ -26,9 +26,29 @@ fun RemoteCharacter.toDomain(): Character {
     )
 }
 
-fun List<RemoteCharacter>.toDomain(): List<Character> {
+@JvmName("toDomainRemoteCharacter")
+fun List<RemoteCharacter>.toDomain(): List<DomainCharacter> {
 
-    val list = ArrayList<Character>()
+    val list = ArrayList<DomainCharacter>()
+    this.forEach {
+        list.add(it.toDomain())
+    }
+    return list
+}
+
+fun RemoteQuote.toDomain(): DomainQuote{
+    return DomainQuote(
+        this.quote_id,
+        this.quote,
+        this.author,
+        this.series
+    )
+}
+
+@JvmName("toDomainRemoteQuote")
+fun List<RemoteQuote>.toDomain(): List<DomainQuote> {
+
+    val list = ArrayList<DomainQuote>()
     this.forEach {
         list.add(it.toDomain())
     }
@@ -55,15 +75,15 @@ private fun String.toDrawable(): Drawable {
 fun parseCategory(category: String): List<Category> {
 
     val categories = ArrayList<Category>()
-    category.split(",").apply {
+    category.split(", ").apply {
         forEach {
             when (it) {
                 "Breaking Bad" -> categories.add(Category.BREAKING_BAD)
                 "Better Call Saul" -> categories.add(Category.BETTER_CALL_SAUL)
             }
         }
-        return categories
     }
+    return categories
 }
 
 @SuppressLint("SimpleDateFormat")
