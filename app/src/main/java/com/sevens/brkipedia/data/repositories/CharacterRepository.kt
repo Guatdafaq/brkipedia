@@ -1,33 +1,42 @@
 package com.sevens.brkipedia.data.repositories
 
+import com.sevens.brkipedia.data.local.dao.LocalCharacterDao
+import com.sevens.brkipedia.data.mappers.toDataBase
 import com.sevens.brkipedia.data.mappers.toDomain
 import com.sevens.brkipedia.data.remote.services.CharacterService
 import com.sevens.brkipedia.domain.common.Category
 import com.sevens.brkipedia.domain.models.DomainCharacter
-import com.sevens.brkipedia.domain.repositories.ICharacterRepository
+import java.util.*
 import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(
-    private val api : CharacterService
-    ){
+    private val api: CharacterService,
+    private val characterDao: LocalCharacterDao
+) {
 
-    suspend fun getAllCharacters(): List<DomainCharacter>{
-        val response = api.getCharacters()
-        //CharacterProvider.characters = response //TODO Implement provider
-        return response.toDomain()
+    suspend fun getAllCharactersFromApi() = api.getCharacters().toDomain()
+
+    suspend fun getAllCharactersFromDatabase() = characterDao.getAllCharacters().toDomain()
+
+    suspend fun insertCharacters(characters: List<DomainCharacter>) {
+        characterDao.insertCharacters(characters.toDataBase())
     }
 
-    suspend fun getAllCharactersByCategory(category: Category): List<DomainCharacter> {
-        val response = api.getCharacters().toDomain()
-        val list: ArrayList<DomainCharacter> = ArrayList<DomainCharacter>()
+    suspend fun getAllCharactersByCategoryFromApi(category: Category) =
+        api.getCharactersByCategory(
+            category.value.lowercase()
+                .replace("_".toRegex(), " ")
+                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+                .replace("\\s".toRegex(), "+")
+        ).toDomain()
 
-        response.forEach { character ->
-            character.category.forEach {
-                if(it.value == category.value)
-                    list.add(character)
-            }
-        }
-        return list
+    suspend fun getAllCharactersByCategoryFromDatabase(category: Category) =
+        characterDao.getCharactersByCategory(
+            category.value
+        ).toDomain()
+
+    suspend fun clearCharacters() {
+        characterDao.deleteAllCharacters()
     }
 
 }

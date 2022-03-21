@@ -17,4 +17,12 @@ class CharacterService @Inject constructor(
             //TODO Implement exceptions
         }
     }
+
+    suspend fun getCharactersByCategory(category: String): List<RemoteCharacter> {
+        return withContext(Dispatchers.IO) {
+                val response = api.getCharactersByCategory(category)
+                response.body() ?: emptyList()
+            //TODO Implement exceptions
+        }
+    }
 }

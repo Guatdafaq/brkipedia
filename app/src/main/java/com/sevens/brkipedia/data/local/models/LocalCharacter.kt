@@ -1,21 +1,25 @@
-package com.sevens.brkipedia.domain.models
+package com.sevens.brkipedia.data.local.models
 
-import android.graphics.drawable.Drawable
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.sevens.brkipedia.domain.common.Category
 import com.sevens.brkipedia.domain.common.Status
-import java.io.Serializable
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
-data class DomainCharacter(
+@Parcelize
+@Entity(tableName = "character_table")
+data class LocalCharacter(
+    @PrimaryKey(autoGenerate = false)
     val id: Int,
     val name: String,
-    val birthday: Date?,
+    val birthday: String,
     val occupation: List<String>,
     val img: String,
     val status: Status,
     val nickname: String,
     val seasons: List<Int>,
     val actor: String,
-    val category: List<Category>
-) : Serializable
+    val category: List<String>
+) : Parcelable

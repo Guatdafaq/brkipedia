@@ -9,5 +9,15 @@ import javax.inject.Inject
 class GetCharactersByCategory @Inject constructor(
     private val characterRepository: CharacterRepository
 ) {
-    suspend operator fun invoke(category: Category): List<DomainCharacter> = characterRepository.getAllCharactersByCategory(category)
+    suspend operator fun invoke(category: Category): List<DomainCharacter> {
+
+        val characters = characterRepository.getAllCharactersByCategoryFromApi(category)
+        if(characters.isNotEmpty()) {
+            characterRepository.clearCharacters()
+            characterRepository.insertCharacters(characters)
+        }else{
+            characterRepository.getAllCharactersByCategoryFromDatabase(category)
+        }
+        return characters
+    }
 }
