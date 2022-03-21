@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import com.sevens.brkipedia.R
 import com.sevens.brkipedia.databinding.FragmentCategoriesBinding
 import com.sevens.brkipedia.domain.common.Category
 
@@ -29,7 +30,7 @@ class CategoriesFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter =FragmentAdapter(requireActivity().supportFragmentManager, lifecycle)
+        val adapter = FragmentAdapter(childFragmentManager, lifecycle)
         binding.viewPager.adapter = adapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
@@ -40,9 +41,9 @@ class CategoriesFragment: Fragment() {
 
     private fun getItemTitle(position: Int): String{
         return when(position){
-            0 -> "Breaking Bad"
-            1 -> "Better Call Saul"
-            else -> "Breaking Bad"
+            0 -> getString(R.string.breaking_bad)
+            1 -> getString(R.string.better_call_saul)
+            else -> getString(R.string.breaking_bad)
         }
     }
 

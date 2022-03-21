@@ -17,12 +17,12 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Breaking Bad"/>
+            android:text="@string/breaking_bad"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Better Call Saul" />
+            android:text="@string/better_call_saul" />
 
     </com.google.android.material.tabs.TabLayout>
 

@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.sevens.brkipedia.R
 import com.sevens.brkipedia.databinding.FragmentCharacterDetailBinding
 import com.sevens.brkipedia.presentation.adapters.CharactersAdapter
 import com.sevens.brkipedia.presentation.adapters.DetailQuotesAdapter
@@ -47,10 +48,10 @@ class CharacterDetailFragment : Fragment() {
             actorNameText.text = args.character.actor
             characterNameText.text = args.character.name
             ageText.text = getYears(args.character.birthday)
-            seasonsText.text = "Seasons"
+            seasonsText.text = getString(R.string.character_detail_season_title)
             val seasonsAdapter = DetailSeasonsAdapter {
                     season ->
-                Toast.makeText(requireContext(), "Appears in season $season", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.character_detail_season_toast, season.toString()), Toast.LENGTH_SHORT).show()
             }
             seasonsList.adapter = seasonsAdapter
             seasonsAdapter.submitList(args.character.seasons)
@@ -60,13 +61,13 @@ class CharacterDetailFragment : Fragment() {
                 val clipboardManager = requireActivity().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
                 val clipData = ClipData.newPlainText("text", quote.text)
                 clipboardManager.setPrimaryClip(clipData)
-                Toast.makeText(requireContext(), "Quote copied to clipboard", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), getString(R.string.character_detail_famous_quotes_toast), Toast.LENGTH_LONG).show()
             }
             characterDetailViewModel.quotesByAuthor.observe(viewLifecycleOwner){
                 quotesAdapter.submitList(it)
             }
             famousQuotesList.adapter = quotesAdapter
-            famousQuotesText.text = "Famous Quotes"
+            famousQuotesText.text = getString(R.string.character_detail_famous_quotes_title)
             characterDetailViewModel.getQuotesByAuthor(args.character.name)
         }
     }
