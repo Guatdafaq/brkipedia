@@ -9,12 +9,16 @@ import com.sevens.brkipedia.data.repositories.QuoteRepository
 import com.sevens.brkipedia.domain.models.DomainQuote
 import com.sevens.brkipedia.usecases.GetQuotes
 import com.sevens.brkipedia.usecases.GetQuotesByAuthor
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CharacterDetailViewModel : ViewModel() {
+@HiltViewModel
+class CharacterDetailViewModel @Inject constructor(
+    val quotesUseCase : GetQuotes,
+    val quotesByAuthorUseCase : GetQuotesByAuthor
+) : ViewModel() {
 
-    val quotesProvider = GetQuotes(QuoteRepository())
-    val quotesByAuthorProvider = GetQuotesByAuthor(QuoteRepository())
 
     val quotes = MutableLiveData<List<DomainQuote>>()
     val quotesByAuthor = MutableLiveData<List<DomainQuote>>()
@@ -22,7 +26,7 @@ class CharacterDetailViewModel : ViewModel() {
     fun getQuotes() {
         viewModelScope.launch{
             try{
-                val result = quotesProvider()
+                val result = quotesUseCase()
                 quotesByAuthor.postValue(result)
             } catch (ex: MalformedJsonException){
                 ex.message?.let { Log.i("API", it) }
@@ -32,7 +36,7 @@ class CharacterDetailViewModel : ViewModel() {
     fun getQuotesByAuthor(author: String) {
         viewModelScope.launch{
             try{
-                val result = quotesByAuthorProvider(author)
+                val result = quotesByAuthorUseCase(author)
                 quotesByAuthor.postValue(result)
             } catch (ex: MalformedJsonException){
                 ex.message?.let { Log.i("API", it) }

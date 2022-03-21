@@ -11,9 +11,11 @@ import com.sevens.brkipedia.databinding.FragmentCharacterListBinding
 import com.sevens.brkipedia.domain.common.Category
 import com.sevens.brkipedia.presentation.adapters.CharactersAdapter
 import com.sevens.brkipedia.presentation.viewmodels.CharacterListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val CATEGORY = "category"
 
+@AndroidEntryPoint
 class CharacterListFragment : Fragment() {
 
     private lateinit var _binding: FragmentCharacterListBinding

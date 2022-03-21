@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
 }
 
@@ -66,8 +67,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     //Android navigation
-    implementation 'androidx.navigation:navigation-fragment:2.4.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-fragment:2.5.0-alpha03'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.0-alpha03'
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.13.0'
@@ -75,6 +76,10 @@ dependencies {
 
     //Corrutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+    //Dependency injection
+    implementation "com.google.dagger:hilt-android:2.41"
+    kapt "com.google.dagger:hilt-android-compiler:2.41"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

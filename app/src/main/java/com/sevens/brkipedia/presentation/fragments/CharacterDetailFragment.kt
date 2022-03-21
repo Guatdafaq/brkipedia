@@ -21,8 +21,10 @@ import com.sevens.brkipedia.presentation.adapters.CharactersAdapter
 import com.sevens.brkipedia.presentation.adapters.DetailQuotesAdapter
 import com.sevens.brkipedia.presentation.adapters.DetailSeasonsAdapter
 import com.sevens.brkipedia.presentation.viewmodels.CharacterDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+@AndroidEntryPoint
 class CharacterDetailFragment : Fragment() {
 
     private lateinit var _binding: FragmentCharacterDetailBinding

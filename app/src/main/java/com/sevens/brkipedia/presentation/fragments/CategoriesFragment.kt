@@ -13,7 +13,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.sevens.brkipedia.R
 import com.sevens.brkipedia.databinding.FragmentCategoriesBinding
 import com.sevens.brkipedia.domain.common.Category
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CategoriesFragment: Fragment() {
 
     private lateinit var _binding: FragmentCategoriesBinding
