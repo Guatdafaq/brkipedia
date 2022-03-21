@@ -43,7 +43,7 @@ class CharacterDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding){
-            Glide.with(requireContext()).load(args.character.img).centerCrop().into(imageView)
+            Glide.with(requireContext()).load(args.character.img).centerInside().into(imageView)
             nicknameText.text = args.character.nickname
             actorNameText.text = args.character.actor
             characterNameText.text = args.character.name
@@ -65,6 +65,13 @@ class CharacterDetailFragment : Fragment() {
             }
             characterDetailViewModel.quotesByAuthor.observe(viewLifecycleOwner){
                 quotesAdapter.submitList(it)
+                if(it.isNotEmpty()) {
+                    famousQuotesList.visibility = View.VISIBLE
+                    famousQuotesText.visibility = View.VISIBLE
+                }else{
+                    famousQuotesList.visibility = View.GONE
+                    famousQuotesText.visibility = View.GONE
+                }
             }
             famousQuotesList.adapter = quotesAdapter
             famousQuotesText.text = getString(R.string.character_detail_famous_quotes_title)

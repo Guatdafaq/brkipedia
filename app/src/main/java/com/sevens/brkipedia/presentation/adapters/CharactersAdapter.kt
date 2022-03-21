@@ -30,6 +30,7 @@ class CharactersAdapter(
         fun bind(character: DomainCharacter) = with(binding){
             Glide.with(itemView).load(character.img).centerCrop().into(characterImage)
             nicknameText.text = character.nickname
+            actorNameText.text = character.actor
         }
 
         companion object{

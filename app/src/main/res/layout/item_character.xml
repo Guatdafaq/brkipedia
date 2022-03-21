@@ -8,7 +8,7 @@
     android:elevation="2dp"
     android:clickable="true"
     android:focusable="true"
-    android:background="@drawable/shape_rounded_square_item">
+    app:cardCornerRadius="12dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,15 +24,36 @@
             tools:srcCompat="@tools:sample/avatars"
             tools:ignore="ContentDescription" />
 
-        <TextView
-            android:id="@+id/nickname_text"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="@+id/character_image"
-            app:layout_constraintStart_toStartOf="@+id/character_image"
-            app:layout_constraintTop_toBottomOf="@+id/character_image"
-            tools:text="Heissemberg" />
+            android:background="@drawable/shape_rounded_square_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/character_image">
+
+            <TextView
+                android:id="@+id/nickname_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/CharacterHeaderTextStyle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/actor_name_text"
+                tools:text="Heissemberg" />
+
+            <TextView
+                android:id="@+id/actor_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/CharacterSubHeaderTextStyle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="Bryan Carston" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
