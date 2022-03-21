@@ -1,0 +1,9 @@
+<resources>
+
+    <!-- Character detail -->
+    <string name="character_detail_season_toast">¡Aparece en la temporada %1$s!</string>
+    <string name="character_detail_season_title">Temporadas</string>
+    <string name="character_detail_famous_quotes_title">Frases famosas</string>
+    <string name="character_detail_famous_quotes_toast">Frase copiada al portapapeles</string>
+    
+</resources>
