@@ -42,3 +42,16 @@ Project structure:
 	  └── MainActivity
 	├── usecases
 	└── BrkipediaApp
+	
+## Improvements
+
+ - Deattach every framework class and add it through dependency injection
+ - Save images in base64 
+ - Add a Search bar for Characters
+ - Add a Search bar for Quotes
+ - Add testing
+ - Add use of Flow
+ - Update interface for using Material3 components 
+ - Update interface for using Material3 themes
+ - Update interface for using MotionLayouts and add animations
+
