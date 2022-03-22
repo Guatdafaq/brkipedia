@@ -47,6 +47,7 @@ Project structure:
 
  - Add SplashScreen while loading data
  - Add Presentation Models instead of using Domain Models in Presentation layer
+ - Separate the app into modules from packages inside 'app'
  - Dettach every framework class and add it through dependency injection
  - Save images in base64 
  - Add a Search bar for Characters
