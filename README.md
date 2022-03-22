@@ -45,7 +45,9 @@ Project structure:
 	
 ## Improvements
 
- - Deattach every framework class and add it through dependency injection
+ - Add SplashScreen while loading data
+ - Add Presentation Models instead of using Domain Models in Presentation layer
+ - Dettach every framework class and add it through dependency injection
  - Save images in base64 
  - Add a Search bar for Characters
  - Add a Search bar for Quotes
