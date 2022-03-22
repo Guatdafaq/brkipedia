@@ -10,5 +10,7 @@
     <string name="character_detail_season_title">Seasons</string>
     <string name="character_detail_famous_quotes_title">Famous Quotes</string>
     <string name="character_detail_famous_quotes_toast">Quote coppied to clipboard</string>
+    <string name="character_detail_age">%1$s years</string>
+    <string name="character_detail_age_unknown">Unknown</string>
 
 </resources>

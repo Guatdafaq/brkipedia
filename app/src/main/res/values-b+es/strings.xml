@@ -5,5 +5,7 @@
     <string name="character_detail_season_title">Temporadas</string>
     <string name="character_detail_famous_quotes_title">Frases famosas</string>
     <string name="character_detail_famous_quotes_toast">Frase copiada al portapapeles</string>
+    <string name="character_detail_age">%1$s años</string>
+    <string name="character_detail_age_unknown">Desconocida</string>
     
 </resources>

@@ -1,15 +1,18 @@
 package com.sevens.brkipedia.data.mappers
 
+import android.annotation.SuppressLint
 import com.sevens.brkipedia.data.local.models.LocalCharacter
 import com.sevens.brkipedia.data.local.models.LocalQuote
 import com.sevens.brkipedia.domain.models.DomainCharacter
 import com.sevens.brkipedia.domain.models.DomainQuote
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun DomainCharacter.toDataBase() =
     LocalCharacter(
         this.id,
         this.name,
-        this.birthday.toString(),
+        parseDate(this.birthday),
         this.occupation,
         this.img,
         this.status,
@@ -34,3 +37,11 @@ fun DomainQuote.toDataBase() =
 
 @JvmName("toDataBaseDomainQuote")
 fun List<DomainQuote>.toDataBase() = this.map { it.toDataBase() }
+
+@SuppressLint("SimpleDateFormat")
+fun parseDate(birthday: Date?): String {
+    return if (birthday != null)
+        SimpleDateFormat("MM-dd-yyyy").format(birthday)
+    else
+        "Unknown"
+}

@@ -3,6 +3,7 @@ package com.sevens.brkipedia.di
 import android.util.Log
 import com.sevens.brkipedia.data.remote.apis.CharacterApi
 import com.sevens.brkipedia.data.remote.apis.QuoteApi
+import com.sevens.brkipedia.domain.common.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +24,7 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://www.breakingbadapi.com/api/")
+            .baseUrl(Constants.API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient())
             .build()

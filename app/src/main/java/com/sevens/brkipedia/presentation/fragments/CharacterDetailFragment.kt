@@ -87,6 +87,6 @@ class CharacterDetailFragment : Fragment() {
             val cal = Calendar.getInstance()
             age = (cal.time.time - date.time) / 86400000 / 365
         }
-        return if(age > 0 ) age.toString() + " years" else "UNKNOWN"
+        return if(age > 0 ) getString(R.string.character_detail_age, age.toString()) else getString(R.string.character_detail_age_unknown)
     }
 }

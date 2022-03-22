@@ -19,7 +19,7 @@ interface LocalCharacterDao {
     @Query(
         """
         SELECT * FROM character_table 
-        WHERE category = :category
+        WHERE category LIKE '%' || :category || '%'
         """
     )
     suspend fun getCharactersByCategory(category: String): List<LocalCharacter>

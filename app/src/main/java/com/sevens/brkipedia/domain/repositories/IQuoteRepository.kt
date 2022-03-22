@@ -1,11 +1,12 @@
 package com.sevens.brkipedia.domain.repositories
 
 import com.sevens.brkipedia.domain.models.DomainQuote
-import javax.inject.Inject
 
-interface IQuoteRepository  {
-
-    suspend fun getAllQuotes(): List<DomainQuote>
-    suspend fun getQuotesByAuthor(author: String): List<DomainQuote>
-
+interface IQuoteRepository {
+    suspend fun getAllQuotesFromApi(): List<DomainQuote>
+    suspend fun getAllQuotesFromDatabase(): List<DomainQuote>
+    suspend fun insertQuotes(quote: List<DomainQuote>)
+    suspend fun getQuotesByAuthorFromApi(author: String): List<DomainQuote>
+    suspend fun getQuotesByAuthorFromDatabase(author: String): List<DomainQuote>
+    suspend fun clearQuotes()
 }

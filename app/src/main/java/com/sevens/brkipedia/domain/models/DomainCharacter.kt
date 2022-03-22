@@ -1,7 +1,5 @@
 package com.sevens.brkipedia.domain.models
 
-import android.graphics.drawable.Drawable
-import android.os.Parcelable
 import com.sevens.brkipedia.domain.common.Category
 import com.sevens.brkipedia.domain.common.Status
 import java.io.Serializable

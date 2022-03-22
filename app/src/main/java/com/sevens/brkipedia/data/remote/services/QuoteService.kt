@@ -1,10 +1,12 @@
 package com.sevens.brkipedia.data.remote.services
 
-import com.sevens.brkipedia.data.remote.RetrofitHelper
+import android.util.Log
 import com.sevens.brkipedia.data.remote.apis.QuoteApi
+import com.sevens.brkipedia.data.remote.models.RemoteCharacter
 import com.sevens.brkipedia.data.remote.models.RemoteQuote
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 import javax.inject.Inject
 
 class QuoteService @Inject constructor(
@@ -13,17 +15,33 @@ class QuoteService @Inject constructor(
 
     suspend fun getQuotes(): List<RemoteQuote> {
         return withContext(Dispatchers.IO) {
-            val response = api.getQuotes()
-            response.body() ?: emptyList()
-            //TODO Implement exceptions
+            var result: List<RemoteQuote> = emptyList()
+            try{
+                val response = api.getQuotes()
+                response.body()?.let{
+                    result = it
+                }
+            }catch(ex: Exception){
+                Log.d("CHARACTER_API", ex.message!!)
+                //TODO Implement exceptions
+            }
+            result
         }
     }
 
     suspend fun getQuotesByAuthor(author: String): List<RemoteQuote> {
         return withContext(Dispatchers.IO) {
-            val response = api.getQuotesByAuthor(author)
-            response.body() ?: emptyList()
-            //TODO Implement exceptions
+            var result: List<RemoteQuote> = emptyList()
+            try{
+                val response = api.getQuotesByAuthor(author)
+                response.body()?.let{
+                    result = it
+                }
+            }catch(ex: Exception){
+                Log.d("CHARACTER_API", ex.message!!)
+                //TODO Implement exceptions
+            }
+            result
         }
     }
 }

@@ -19,7 +19,6 @@ class CharacterDetailViewModel @Inject constructor(
     val quotesByAuthorUseCase : GetQuotesByAuthor
 ) : ViewModel() {
 
-
     val quotes = MutableLiveData<List<DomainQuote>>()
     val quotesByAuthor = MutableLiveData<List<DomainQuote>>()
 
